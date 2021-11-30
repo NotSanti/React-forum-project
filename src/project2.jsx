@@ -4,7 +4,12 @@ let global = {};
 global.LHS = document.querySelector("#LHS");
 
 function setup() {
+  const middle = document.querySelector("#Middle");
   getData();
+  ReactDOM.render(
+    <Middle listposts={global.cat.categories[0].topicList} />,
+    middle
+  );
 }
 
 function getData() {
@@ -33,7 +38,7 @@ class LHS extends React.Component {
     return (
       <div>
         {cat.map((cats, index) => (
-          <button key={index} id={cats.id} onClick={renderMiddle()}>
+          <button key={index} id={cats.id} onClick={}>
             {cats.name}
           </button>
         ))}
@@ -50,10 +55,14 @@ class Middle extends React.Component {
     };
   }
 
-  getData() {}
+  getData() {
+    let topiclist = global.cat[0].topicList;
+    console.log(topiclist);
+    this.setState({ topics: topiclist });
+  }
 
   render() {
-    let listposts = this.props.listposts;
+    let listposts = this.state.topics;
     return (
       <div>
         {listposts.map((posts, index) => (
@@ -64,11 +73,4 @@ class Middle extends React.Component {
   }
 }
 
-function renderMiddle() {
-  const middle = document.querySelector("#Middle");
-  ReactDOM.render(
-    <Middle listposts={global.cat.categories[0].topicList} />,
-    middle
-  );
-}
 setup();
