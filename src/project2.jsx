@@ -21,16 +21,19 @@ function getData() {
 
 function renderLHS(json) {
   console.log(json);
-  ReactDOM.render(<Buttons categories={json} />, global.LHS);
+  ReactDOM.render(<LHS categories={json} />, global.LHS);
 }
 
-class Buttons extends React.Component {
+class LHS extends React.Component {
+  sayHi() {
+    console.log("say hi");
+  }
   render() {
     let cat = this.props.categories;
     return (
       <div>
         {cat.map((cats, index) => (
-          <button key={index} id={cats.id}>
+          <button key={index} id={cats.id} onClick={renderMiddle()}>
             {cats.name}
           </button>
         ))}
@@ -39,4 +42,33 @@ class Buttons extends React.Component {
   }
 }
 
+class Middle extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      topics: [],
+    };
+  }
+
+  getData() {}
+
+  render() {
+    let listposts = this.props.listposts;
+    return (
+      <div>
+        {listposts.map((posts, index) => (
+          <p key={index}>{posts.text}</p>
+        ))}
+      </div>
+    );
+  }
+}
+
+function renderMiddle() {
+  const middle = document.querySelector("#Middle");
+  ReactDOM.render(
+    <Middle listposts={global.cat.categories[0].topicList} />,
+    middle
+  );
+}
 setup();
