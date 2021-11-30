@@ -25,6 +25,12 @@ function renderLHS(json) {
 }
 
 class Buttons extends React.Component {
+
+  constructor(props)
+  getPosts(e) {
+    
+  }
+
   render() {
     let cat = this.props.categories;
     return (
