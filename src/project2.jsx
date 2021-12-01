@@ -45,7 +45,7 @@ class LHS extends React.Component {
   handleClick(e) {
     this.setState({
         click: true,
-        currentCategory: e.target.id
+        currentCategory: (e.target.id - 1)
       })
   }
   
@@ -97,7 +97,7 @@ class Middle extends React.Component {
 
   render() {
     console.log("render middle");
-    let topicList = global.categories[0].topicList;
+    let topicList = global.categories[this.props.currentCategory].topicList;
     let totalCatPost = this.iteratePost(topicList);
     return (
       <div>
