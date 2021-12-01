@@ -6,10 +6,10 @@ global.LHS = document.querySelector("#LHS");
 function setup() {
   const middle = document.querySelector("#Middle");
   getData();
-  ReactDOM.render(
-    <Middle listposts={global.cat.categories[0].topicList} />,
-    middle
-  );
+  // ReactDOM.render(
+  //   <Middle listposts={global.cat.categories[0].topicList} />,
+  //   middle
+  // );
 }
 
 function getData() {
@@ -26,10 +26,25 @@ function getData() {
 
 function renderLHS(json) {
   console.log(json);
-  ReactDOM.render(<LHS categories={json} />, global.LHS);
+  ReactDOM.render(
+    <LHS categories={json} />, global.LHS);
 }
 
 class LHS extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      click: false
+    }
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    this.setState({
+        click: true
+      })
+  }
+  
   sayHi() {
     console.log("say hi");
   }
@@ -37,11 +52,14 @@ class LHS extends React.Component {
     let cat = this.props.categories;
     return (
       <div>
-        {cat.map((cats, index) => (
-          <button key={index} id={cats.id} onClick={}>
-            {cats.name}
-          </button>
-        ))}
+        <div>
+          {cat.map((cats, index) => (
+            <button key={index} id={cats.id} onClick={this.handleClick}>
+              {cats.name}
+            </button>
+          ))}
+        </div>
+        {this.state.click ? <Middle /> : null}
       </div>
     );
   }
@@ -56,16 +74,18 @@ class Middle extends React.Component {
   }
 
   getData() {
-    let topiclist = global.cat[0].topicList;
-    console.log(topiclist);
-    this.setState({ topics: topiclist });
+    let topicList = global.cat[0].topicList;
+    console.log(topicList);
+    this.setState({ topics: topicList });
   }
 
   render() {
-    let listposts = this.state.topics;
+    console.log("render middle");
+    let listPost = this.state.topics;
     return (
       <div>
-        {listposts.map((posts, index) => (
+        <p>test render</p>
+        {listPost.map((posts, index) => (
           <p key={index}>{posts.text}</p>
         ))}
       </div>
