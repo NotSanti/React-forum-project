@@ -4,7 +4,6 @@ let global;
 
 
 function setup() {
-  const middle = document.querySelector("#Middle");
   getData();
   global = {};
   global.LHS = document.querySelector("#LHS");
@@ -37,20 +36,19 @@ class LHS extends React.Component {
   constructor() {
     super();
     this.state = {
-      click: false
+      click: false,
+      currentCategory: null
     }
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick() {
+  handleClick(e) {
     this.setState({
-        click: true
+        click: true,
+        currentCategory: e.target.id
       })
   }
   
-  sayHi() {
-    console.log("say hi");
-  }
   render() {
     let category = this.props.categories;
     return (
@@ -62,7 +60,7 @@ class LHS extends React.Component {
             </button>
           ))}
         </div>
-        {this.state.click ? <Middle  /> : null}
+        {this.state.click ? <Middle currentCategory={this.state.currentCategory}  /> : null}
       </div>
     );
   }
@@ -76,18 +74,20 @@ class Middle extends React.Component {
     };
   }
 
-  getData() {
-    let topicList = global.categories[0].topicList;
-    console.log(topicList);
-    this.setState({ topics: topicList });
-  }
+  // getData() {
+  //   let topicList = global.categories[0].topicList;
+  //   console.log(topicList);
+  //   this.setState({ topics: topicList });
+  // }
 
-  iteratePost() {
-    let topicList = global.categories[0].topicList;
+  iteratePost(topicList) {
+    //array to be returned
     let totalCatPost = [];
     
     topicList.forEach( (elem, index) => {
       console.log("elem" + elem.listPosts);
+      //concat each listpost array to the totalCatPost array 
+      //(creates a mega post array with the post from all the list post of the category)
       totalCatPost = totalCatPost.concat(elem.listPosts)
       })
     
@@ -97,11 +97,10 @@ class Middle extends React.Component {
 
   render() {
     console.log("render middle");
-    
-    let totalCatPost = this.iteratePost();
+    let topicList = global.categories[0].topicList;
+    let totalCatPost = this.iteratePost(topicList);
     return (
       <div>
-        <p>test render</p>
         {totalCatPost.map( (post, index) => (
           <p key={index}>{post.text}</p>
         ))}
