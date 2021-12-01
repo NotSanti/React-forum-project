@@ -82,11 +82,13 @@ class Middle extends React.Component {
     this.setState({ topics: topicList });
   }
 
-  iteratePost(topicPost) {
+  iteratePost() {
+    let topicList = global.categories[0].topicList;
     let totalCatPost = [];
     
-    topicPost.forEach( (elem, index) => {
-      totalCatPost = totalCatPost.concat(elem[index])
+    topicList.forEach( (elem, index) => {
+      console.log("elem" + elem.listPosts);
+      totalCatPost = totalCatPost.concat(elem.listPosts)
       })
     
     console.log(totalCatPost);
@@ -95,9 +97,8 @@ class Middle extends React.Component {
 
   render() {
     console.log("render middle");
-    let topicList = global.categories[0].topicList;
-    console.log(topicList);
-    let totalCatPost = this.iteratePost(topicList);
+    
+    let totalCatPost = this.iteratePost();
     return (
       <div>
         <p>test render</p>
