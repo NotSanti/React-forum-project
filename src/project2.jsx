@@ -80,7 +80,7 @@ class Middle extends React.Component {
   //   this.setState({ topics: topicList });
   // }
 
-  iteratePost(topicList) {
+  getAllPost(topicList) {
     //array to be returned
     let totalCatPost = [];
     
@@ -98,7 +98,7 @@ class Middle extends React.Component {
   render() {
     console.log("render middle");
     let topicList = global.categories[this.props.currentCategory].topicList;
-    let totalCatPost = this.iteratePost(topicList);
+    let totalCatPost = this.getAllPost(topicList);
     return (
       <div>
         {totalCatPost.map( (post, index) => (
