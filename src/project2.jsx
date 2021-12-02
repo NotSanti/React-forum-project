@@ -1,42 +1,66 @@
 "use strict";
 
-let global = {};
-global.LHS = document.querySelector("#LHS");
+let global;
 
 function setup() {
   getData();
+  global = {};
+  global.container = document.querySelector("#container");
+  global.categories = [];
+  // ReactDOM.render(
+  //   <Middle listposts={global.cat.categories[0].topicList} />,
+  //   middle
+  // );
 }
 
 function getData() {
-  global.categories = [];
   let path = "data/forum.json";
   fetch(path)
     .then((resp) => resp.json())
     .then((jsonResp) => {
       // console.log(jsonResp);
-      global.cat = jsonResp;
+      global.categories = jsonResp.categories;
       renderLHS(jsonResp.categories);
     });
 }
 
 function renderLHS(json) {
   console.log(json);
-  ReactDOM.render(<LHS categories={json} />, global.LHS);
+  ReactDOM.render(<LHS categories={json} />, global.container);
 }
 
 class LHS extends React.Component {
-  sayHi() {
-    console.log("say hi");
+  constructor() {
+    super();
+    this.state = {
+      click: false,
+      currentCategory: null,
+    };
+    this.handleClick = this.handleClick.bind(this);
   }
+
+  handleClick(e) {
+    this.setState({
+      click: true,
+      currentCategory: e.target.id - 1,
+    });
+  }
+
   render() {
-    let cat = this.props.categories;
+    let category = this.props.categories;
     return (
-      <div>
-        {cat.map((cats, index) => (
-          <button key={index} id={cats.id} onClick={renderMiddle()}>
-            {cats.name}
-          </button>
-        ))}
+      <div className="container">
+        <div className="LHS">
+          {category.map((cats, index) => (
+            <button key={index} id={cats.id} onClick={this.handleClick}>
+              {cats.name}
+            </button>
+          ))}
+        </div>
+        {this.state.click ? (
+          <Middle currentCategory={this.state.currentCategory} />
+        ) : null}
+        <RHS />
       </div>
     );
   }
@@ -50,25 +74,50 @@ class Middle extends React.Component {
     };
   }
 
-  getData() {}
+  // getData() {
+  //   let topicList = global.categories[0].topicList;
+  //   console.log(topicList);
+  //   this.setState({ topics: topicList });
+  // }
+
+  getAllPost(topicList) {
+    //array to be returned
+    let totalCatPost = [];
+
+    topicList.forEach((elem, index) => {
+      console.log("elem" + elem.listPosts);
+      //concat each listpost array to the totalCatPost array
+      //(creates a mega post array with the post from all the list post of the category)
+      totalCatPost = totalCatPost.concat(elem.listPosts);
+    });
+
+    console.log(totalCatPost);
+    return totalCatPost;
+  }
 
   render() {
-    let listposts = this.props.listposts;
+    console.log("render middle");
+    let topicList = global.categories[this.props.currentCategory].topicList;
+    let totalCatPost = this.getAllPost(topicList);
     return (
-      <div>
-        {listposts.map((posts, index) => (
-          <p key={index}>{posts.text}</p>
+      <div className="middle">
+        {totalCatPost.map((post, index) => (
+          <p key={index}>{post.text}</p>
         ))}
       </div>
     );
   }
 }
 
-function renderMiddle() {
-  const middle = document.querySelector("#Middle");
-  ReactDOM.render(
-    <Middle listposts={global.cat.categories[0].topicList} />,
-    middle
-  );
+class RHS extends React.Component {
+  //post info needs to render here
+  render() {
+    return (
+      <div className="RHS">
+        <p>post info goes here</p>
+      </div>
+    );
+  }
 }
+
 setup();
