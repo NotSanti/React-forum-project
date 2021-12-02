@@ -7,10 +7,6 @@ function setup() {
   global = {};
   global.container = document.querySelector("#container");
   global.categories = [];
-  // ReactDOM.render(
-  //   <Middle listposts={global.cat.categories[0].topicList} />,
-  //   middle
-  // );
 }
 
 function getData() {
@@ -73,12 +69,6 @@ class Middle extends React.Component {
       topics: [],
     };
   }
-
-  // getData() {
-  //   let topicList = global.categories[0].topicList;
-  //   console.log(topicList);
-  //   this.setState({ topics: topicList });
-  // }
 
   getAllPost(topicList) {
     //array to be returned
