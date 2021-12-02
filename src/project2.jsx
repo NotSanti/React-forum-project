@@ -7,10 +7,6 @@ function setup() {
   global = {};
   global.container = document.querySelector("#container");
   global.categories = [];
-  // ReactDOM.render(
-  //   <Middle listposts={global.cat.categories[0].topicList} />,
-  //   middle
-  // );
 }
 
 function getData() {
@@ -70,15 +66,13 @@ class Middle extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      topics: [],
+      // topics: [],
+      click: false,
+      post: {}
     };
+    this.handleMiddleClick = this.handleMiddleClick.bind(this);
+    
   }
-
-  // getData() {
-  //   let topicList = global.categories[0].topicList;
-  //   console.log(topicList);
-  //   this.setState({ topics: topicList });
-  // }
 
   getAllPost(topicList) {
     //array to be returned
@@ -95,6 +89,20 @@ class Middle extends React.Component {
     return totalCatPost;
   }
 
+  handleMiddleClick(e) {
+    console.log("Middle click");
+    let topicList = global.categories[this.props.currentCategory].topicList;
+    let totalCatPost = this.getAllPost(topicList);
+    console.log("key: " + e.target.id)
+    let buttonPost = totalCatPost[e.target.id]
+    console.log("buttonPost: " + buttonPost.author)
+    this.setState({
+      click: true,
+      post: buttonPost
+    })
+    console.log(this.state.post.author);
+  }
+
   render() {
     console.log("render middle");
     let topicList = global.categories[this.props.currentCategory].topicList;
@@ -102,9 +110,14 @@ class Middle extends React.Component {
     return (
       <div className="middle">
         {totalCatPost.map((post, index) => (
-          <p key={index}>{post.author + ": " + post.text}</p>
-          
+          <p key={index}>
+            {post.author}: 
+            {post.text}
+            <button key={index} id={index} onClick={this.handleMiddleClick}>hello</button>
+            
+          </p>
         ))}
+        {this.state.click ? (<RHS buttonPost={this.state.post}/> ) : null}
       </div>
     );
   }
@@ -112,12 +125,15 @@ class Middle extends React.Component {
 
 class RHS extends React.Component {
   //post info needs to render here
-
-
+  constructor(props) {
+    super(props);
+  }
   render() {
+    let post = this.props.buttonPost;
+    // console.log(post.date);
     return (
       <div className="RHS">
-        <p>post info goes here</p>
+        <p>test</p>
       </div>
     );
   }
