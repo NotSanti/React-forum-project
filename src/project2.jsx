@@ -102,7 +102,8 @@ class Middle extends React.Component {
     return (
       <div className="middle">
         {totalCatPost.map((post, index) => (
-          <p key={index}>{post.author + ": " +post.text}</p>
+          <p key={index}>{post.author + ": " + post.text}</p>
+          
         ))}
       </div>
     );
