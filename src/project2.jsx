@@ -30,7 +30,7 @@ class LHS extends React.Component {
     super();
     this.state = {
       click: false,
-      currentCategory: null,
+      currentCategory: null
     };
     this.handleClick = this.handleClick.bind(this);
   }
@@ -68,17 +68,8 @@ class Middle extends React.Component {
       post: null
     };
     this.handleMiddleClick = this.handleMiddleClick.bind(this);
-    
   }
 
-  /**
-   *
-   *
-   * @param {} topicList
-   * @return {} 
-   * @memberof Middle
-   * @author
-   */
   getAllPost(topicList) {
     //array to be returned
     let totalCatPost = [];
@@ -95,11 +86,10 @@ class Middle extends React.Component {
   }
 
   handleMiddleClick(e) {
-    // console.log("Middle click");
-    let topicList = global.categories[this.props.currentCategory].topicList;
-    let totalCatPost = this.getAllPost(topicList);
-    // console.log("key: " + e.target.id)
-    let buttonPost = totalCatPost[e.target.id]
+    // let topicList = global.categories[this.props.currentCategory].topicList;
+    // let totalCatPost = this.getAllPost(topicList);
+
+    let buttonPost = global.totalCatPost[e.target.id]
     // console.log("buttonPost: " + buttonPost.author)
     this.setState({
       click: true,
@@ -110,10 +100,11 @@ class Middle extends React.Component {
   render() {
     console.log("render middle");
     let topicList = global.categories[this.props.currentCategory].topicList;
-    let totalCatPost = this.getAllPost(topicList);
+    global.totalCatPost = this.getAllPost(topicList);
+ 
     return (
       <div className="middle">
-        {totalCatPost.map((post, index) => (
+        {global.totalCatPost.map((post, index) => (
           <p key={index}>
             {post.author}: 
             {post.text}
