@@ -1,0 +1,30 @@
+.container {
+  display: flex;
+  flex-direction: row;
+}
+
+.LHS {
+  background-color: aquamarine;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.middle {
+  background-color: coral;
+  padding: 10px;
+}
+
+.RHS {
+  background-color: blueviolet;
+  padding: 10px;
+}
+
+.footer {
+  background-color: chocolate;
+  text-align: center;
+}
+
+h1 {
+  text-align: center;
+}
