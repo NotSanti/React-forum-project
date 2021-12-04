@@ -53,11 +53,8 @@ class LHS extends React.Component {
             </button>
           ))}
         </div>
-        {this.state.click ? (
-          <Middle currentCategory={this.state.currentCategory} />
-        ) : null}
-        <RHS />
-      </div>
+          {this.state.click ? (<Middle currentCategory={this.state.currentCategory} />) : null}
+        </div>
     );
   }
 }
@@ -68,12 +65,20 @@ class Middle extends React.Component {
     this.state = {
       // topics: [],
       click: false,
-      post: {}
+      post: null
     };
     this.handleMiddleClick = this.handleMiddleClick.bind(this);
     
   }
 
+  /**
+   *
+   *
+   * @param {} topicList
+   * @return {} 
+   * @memberof Middle
+   * @author
+   */
   getAllPost(topicList) {
     //array to be returned
     let totalCatPost = [];
@@ -90,17 +95,16 @@ class Middle extends React.Component {
   }
 
   handleMiddleClick(e) {
-    console.log("Middle click");
+    // console.log("Middle click");
     let topicList = global.categories[this.props.currentCategory].topicList;
     let totalCatPost = this.getAllPost(topicList);
-    console.log("key: " + e.target.id)
+    // console.log("key: " + e.target.id)
     let buttonPost = totalCatPost[e.target.id]
-    console.log("buttonPost: " + buttonPost.author)
+    // console.log("buttonPost: " + buttonPost.author)
     this.setState({
       click: true,
       post: buttonPost
     })
-    console.log(this.state.post.author);
   }
 
   render() {
@@ -130,10 +134,12 @@ class RHS extends React.Component {
   }
   render() {
     let post = this.props.buttonPost;
-    // console.log(post.date);
+    console.log(this.props.buttonPost);
     return (
       <div className="RHS">
-        <p>test</p>
+        <p>{post.author} {post.rate}⭐ {post.date}</p>
+        <p>{post.text}</p>
+        <p>Replies: {post.replies}</p>
       </div>
     );
   }
