@@ -1,7 +1,10 @@
 .container {
+  width: 50%;
+  margin: auto;
   display: flex;
   flex-direction: row;
 }
+ 
 
 .LHS {
   background-color: aquamarine;

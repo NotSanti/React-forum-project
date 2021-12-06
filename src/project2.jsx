@@ -53,7 +53,7 @@ class LHS extends React.Component {
             </button>
           ))}
         </div>
-          {this.state.click ? (<Middle currentCategory={this.state.currentCategory} />) : null}
+        {this.state.click ? (<Middle currentCategory={this.state.currentCategory} />) : null}        
         </div>
     );
   }
@@ -103,17 +103,19 @@ class Middle extends React.Component {
     global.totalCatPost = this.getAllPost(topicList);
  
     return (
-      <div className="middle">
+      <>
+        <div className="middle">
         {global.totalCatPost.map((post, index) => (
           <p key={index}>
             {post.author}: 
             {post.text}
-            <button key={index} id={index} onClick={this.handleMiddleClick}>hello</button>
+            <button key={index} id={index} onClick={this.handleMiddleClick}>show</button>
             
           </p>
         ))}
+        </div>
         {this.state.click ? (<RHS buttonPost={this.state.post}/> ) : null}
-      </div>
+      </>
     );
   }
 }
@@ -135,5 +137,22 @@ class RHS extends React.Component {
     );
   }
 }
+
+// class Main extends React.Component {
+//   constructor(props){
+//     super(props);
+//   }
+
+//   render(){
+//     let json = this.props.json;
+
+//     return(
+//       <div>
+//         <LHS categories={json} />
+//         <Middle 
+//       </div>
+//     );
+//   }
+//}
 
 setup();
