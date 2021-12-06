@@ -30,7 +30,7 @@ class LHS extends React.Component {
     super();
     this.state = {
       click: false,
-      currentCategory: null
+      currentCategory: null,
     };
     this.handleClick = this.handleClick.bind(this);
   }
@@ -53,8 +53,10 @@ class LHS extends React.Component {
             </button>
           ))}
         </div>
-        {this.state.click ? (<Middle currentCategory={this.state.currentCategory} />) : null}        
-        </div>
+        {this.state.click ? (
+          <Middle currentCategory={this.state.currentCategory} />
+        ) : null}
+      </div>
     );
   }
 }
@@ -65,7 +67,7 @@ class Middle extends React.Component {
     this.state = {
       // topics: [],
       click: false,
-      post: null
+      post: null,
     };
     this.handleMiddleClick = this.handleMiddleClick.bind(this);
   }
@@ -89,32 +91,32 @@ class Middle extends React.Component {
     // let topicList = global.categories[this.props.currentCategory].topicList;
     // let totalCatPost = this.getAllPost(topicList);
 
-    let buttonPost = global.totalCatPost[e.target.id]
+    let buttonPost = global.totalCatPost[e.target.id];
     // console.log("buttonPost: " + buttonPost.author)
     this.setState({
       click: true,
-      post: buttonPost
-    })
+      post: buttonPost,
+    });
   }
 
   render() {
     console.log("render middle");
     let topicList = global.categories[this.props.currentCategory].topicList;
     global.totalCatPost = this.getAllPost(topicList);
- 
+
     return (
       <>
         <div className="middle">
-        {global.totalCatPost.map((post, index) => (
-          <p key={index}>
-            {post.author}: 
-            {post.text}
-            <button key={index} id={index} onClick={this.handleMiddleClick}>show</button>
-            
-          </p>
-        ))}
+          {global.totalCatPost.map((post, index) => (
+            <p key={index} className="postTitle">
+              <p className="bold">{post.author}:</p> {post.text}
+              <button key={index} id={index} onClick={this.handleMiddleClick}>
+                show
+              </button>
+            </p>
+          ))}
         </div>
-        {this.state.click ? (<RHS buttonPost={this.state.post}/> ) : null}
+        {this.state.click ? <RHS buttonPost={this.state.post} /> : null}
       </>
     );
   }
@@ -124,13 +126,21 @@ class RHS extends React.Component {
   //post info needs to render here
   constructor(props) {
     super(props);
+    this.state = {
+      click: false,
+    };
   }
   render() {
     let post = this.props.buttonPost;
     console.log(this.props.buttonPost);
     return (
       <div className="RHS">
-        <p>{post.author} {post.rate}⭐ {post.date}</p>
+        <p>
+          Author: {post.author}
+          <br />
+          Rating: {post.rate}⭐<br />
+          Post Date: {post.date}
+        </p>
         <p>{post.text}</p>
         <p>Replies: {post.replies}</p>
       </div>
@@ -149,7 +159,7 @@ class RHS extends React.Component {
 //     return(
 //       <div>
 //         <LHS categories={json} />
-//         <Middle 
+//         <Middle
 //       </div>
 //     );
 //   }

@@ -1,33 +1,133 @@
+body {
+  background-color: #d7d9ce;
+  color: white;
+  font-family: "Roboto Mono", monospace;
+}
+
+button {
+  font-family: "Roboto Mono", monospace;
+  font-weight: bold;
+}
 .container {
-  width: 50%;
+  background-color: #d7d9ce;
   margin: auto;
   display: flex;
-  flex-direction: row;
+  justify-content: center;
+  flex-direction: column;
 }
- 
 
 .LHS {
-  background-color: aquamarine;
   display: flex;
-  flex-direction: column;
-  padding: 10px;
+  flex-direction: row;
+  justify-content: center;
+
+  border-radius: 16px;
+  margin-bottom: 0.5%;
+}
+
+.LHS > button {
+  margin-left: 1%;
+  align-items: center;
+  appearance: button;
+  background-color: #1899d6;
+  border: solid transparent;
+  border-radius: 16px;
+  border-width: 0 0 4px;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: din-round, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  line-height: 20px;
+  outline: none;
+  overflow: visible;
+  padding: 13px 16px;
+  text-align: center;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  transform: translateZ(0);
+  transition: filter 0.2s;
+  box-shadow: 3px 6px 1px -3px rgba(0, 0, 255, 0.2);
+}
+.LHS > button:hover {
+  background-color: #119da4;
+
+  border-radius: 16px;
+}
+
+.middle button {
+  margin-left: 1%;
+  align-items: center;
+  appearance: button;
+  background-color: #1899d6;
+  border: solid transparent;
+  border-radius: 16px;
+  border-width: 0 0 4px;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: din-round, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  line-height: 20px;
+  outline: none;
+  overflow: visible;
+  padding: 13px 16px;
+  text-align: center;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  transform: translateZ(0);
+  transition: filter 0.2s;
+  box-shadow: 3px 6px 1px -3px rgba(0, 0, 255, 0.2);
+}
+
+.middle button:hover {
+  background-color: #0c75a6;
 }
 
 .middle {
-  background-color: coral;
+  background-color: #00b5dc;
   padding: 10px;
+  border: 5px solid black;
+  border-radius: 16px;
+  margin-bottom: 0.5%;
 }
 
 .RHS {
-  background-color: blueviolet;
+  background-color: #00cecc;
   padding: 10px;
+  border: 5px solid black;
+  border-radius: 16px;
+}
+.RHS p {
+  line-height: 250%;
+}
+
+.header {
+  background-color: #d7d9ce;
+  color: black;
 }
 
 .footer {
-  background-color: chocolate;
+  background-color: #d7d9ce;
+  color: black;
   text-align: center;
 }
 
 h1 {
   text-align: center;
+}
+
+.postTitle {
+  display: flex;
+  align-items: center;
+}
+
+.bold {
+  font-weight: bolder;
 }
