@@ -153,6 +153,15 @@ class Middle extends React.Component {
   }
 }
 
+/**
+ *
+ * @class RHS
+ * @author Matthew toledo
+ * @description This class takes in a post as props and and when rendered
+ *  will return the full details of the post
+ *  
+ */
+
 class RHS extends React.Component {
   //post info needs to render here
   constructor(props) {
@@ -178,22 +187,5 @@ class RHS extends React.Component {
     );
   }
 }
-
-// class Main extends React.Component {
-//   constructor(props){
-//     super(props);
-//   }
-
-//   render(){
-//     let json = this.props.json;
-
-//     return(
-//       <div>
-//         <LHS categories={json} />
-//         <Middle
-//       </div>
-//     );
-//   }
-//}
 
 setup();
