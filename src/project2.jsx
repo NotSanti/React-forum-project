@@ -190,6 +190,7 @@ class Middle extends React.Component {
   }
 }
 
+/
 class RHS extends React.Component {
   //post info needs to render here
   constructor(props) {
