@@ -71,6 +71,14 @@ class LHS extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
+
+  /**
+   * @author Matthew Toledo
+   * @param {event} e 
+   * @description event handler for the click on the category buttons.
+   *  When clicked, the currentCategory sate is set the the id -1 of the target
+   *  (corresponds to category of the button).
+   */
   handleClick(e) {
     this.setState({
       currentCategory: e.target.id - 1,
@@ -142,6 +150,14 @@ class Middle extends React.Component {
     return totalCatPost;
   }
 
+
+    /**
+   * @author Matthew Toledo
+   * @param {event} e 
+   * @description event handler for the click on the post buttons.
+   *  When clicked, the id of the target is used to set the post corresponding to the button
+   * to state.
+   */
   handleMiddleClick(e) {
     let buttonPost = global.totalCatPost[e.target.id];
     this.setState({
