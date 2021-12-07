@@ -55,8 +55,12 @@ function renderLHS(json) {
 
 /**
  * @author Santiago Luna
+ * @param {JSON object} categories
  * @class LHS
- * @description
+ * @description takes in the currentcategory as a prop to identify which category was clicked, using the handle click function.
+ * It returns a container div containing the LHS div which has 3 child buttons that use the props to contain the category name.
+ * When the buttons are clicked they fire the handle click method which changes the state of the currentCategory and passes that state to the Middle component in the render.
+ * When rendering it uses the state to check if its populated before rendering the Middle component to re render it each time.
  */
 class LHS extends React.Component {
   constructor() {
