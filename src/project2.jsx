@@ -1,3 +1,9 @@
+/**
+ * @atuhor Santiago Luna
+ * @author Matthew Toledo
+ *
+ */
+
 "use strict";
 
 let global;
@@ -29,7 +35,6 @@ class LHS extends React.Component {
   constructor() {
     super();
     this.state = {
-      click: false,
       currentCategory: null,
     };
     this.handleClick = this.handleClick.bind(this);
@@ -37,7 +42,6 @@ class LHS extends React.Component {
 
   handleClick(e) {
     this.setState({
-      click: true,
       currentCategory: e.target.id - 1,
     });
   }
@@ -53,7 +57,7 @@ class LHS extends React.Component {
             </button>
           ))}
         </div>
-        {this.state.click ? (
+        {this.state.currentCategory !== null ? (
           <Middle currentCategory={this.state.currentCategory} />
         ) : null}
       </div>
@@ -65,9 +69,8 @@ class Middle extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // topics: [],
-      click: false,
       post: null,
+      currentCategory: null,
     };
     this.handleMiddleClick = this.handleMiddleClick.bind(this);
   }
@@ -84,17 +87,21 @@ class Middle extends React.Component {
     });
 
     console.log(totalCatPost);
+
+    //this resets the RHS when the category is changed
+    if (this.state.currentCategory !== this.props.currentCategory) {
+      this.setState({
+        post: null,
+        currentCategory: this.props.currentCategory,
+      });
+    }
+
     return totalCatPost;
   }
 
   handleMiddleClick(e) {
-    // let topicList = global.categories[this.props.currentCategory].topicList;
-    // let totalCatPost = this.getAllPost(topicList);
-
     let buttonPost = global.totalCatPost[e.target.id];
-    // console.log("buttonPost: " + buttonPost.author)
     this.setState({
-      click: true,
       post: buttonPost,
     });
   }
@@ -116,7 +123,7 @@ class Middle extends React.Component {
             </p>
           ))}
         </div>
-        {this.state.click ? <RHS buttonPost={this.state.post} /> : null}
+        {this.state.post !== null ? <RHS buttonPost={this.state.post} /> : null}
       </>
     );
   }
