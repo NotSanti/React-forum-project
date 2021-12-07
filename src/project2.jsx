@@ -6,8 +6,14 @@
 
 "use strict";
 
+//global variable to store json object
 let global;
 
+/**
+ * @author Matthew Toledo
+ * @func setup
+ * @description this function initializes the global variable, creates a global container variable and categories variable, calls the getData function.
+ */
 function setup() {
   getData();
   global = {};
@@ -15,22 +21,40 @@ function setup() {
   global.categories = [];
 }
 
+/**
+ * @author Matthew Toledo, Santiago Luna
+ * @func getData
+ * @description this function fetches the data from the json obj and passes it to the global categories and to the renderLHS function.
+ */
 function getData() {
   let path = "data/forum.json";
   fetch(path)
-    .then((resp) => resp.json())
+    .then((resp) => {
+      if (!resp.ok) {
+        throw new Error("no data found :" + resp.status);
+      } else {
+        return resp.json();
+      }
+    })
     .then((jsonResp) => {
-      // console.log(jsonResp);
       global.categories = jsonResp.categories;
       renderLHS(jsonResp.categories);
-    });
+    })
+    .catch((error) => console.log(error));
 }
 
+/**
+ * @author  Santiago Luna
+ * @param {JSON object} json
+ * @description this function  uses react to render the LHS passing through the json object as a props to the react component and rendering it in the global container.
+ */
 function renderLHS(json) {
-  console.log(json);
   ReactDOM.render(<LHS categories={json} />, global.container);
 }
 
+/**
+ *
+ */
 class LHS extends React.Component {
   constructor() {
     super();
