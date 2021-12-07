@@ -71,12 +71,6 @@ class LHS extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  /**
-   * @author Matthew Toledo
-   * @param {event} e 
-   * @description event handler for the click on the categories. When click sets 
-   * the id of the target -1 to the state which corresponds to the category.
-   */
   handleClick(e) {
     this.setState({
       currentCategory: e.target.id - 1,
@@ -102,6 +96,13 @@ class LHS extends React.Component {
   }
 }
 
+/**
+ * @author Matthew Toledo, Santiago Luna
+ * @class Middle
+ * @param {JSON object} currentCategory
+ * @description renders the middle component that contains all the listposts of the current category passed in as a prop.
+ *
+ */
 class Middle extends React.Component {
   constructor(props) {
     super(props);
@@ -143,17 +144,10 @@ class Middle extends React.Component {
     return totalCatPost;
   }
 
-  /**
-   * @author Matthew Toledo, Santigo Luna
-   * @param {event} e 
-   * @description event handler for the MHS click. When clicked it will take
-   * the id of the target which also corresponds to the category. It will then set the post 
-   * with that category to the sate.
-   */
   handleMiddleClick(e) {
     let buttonPost = global.totalCatPost[e.target.id];
     this.setState({
-      post: buttonPost
+      post: buttonPost,
     });
   }
 
@@ -180,20 +174,13 @@ class Middle extends React.Component {
   }
 }
 
-/**
- *
- * @class RHS
- * @author Matthew toledo
- * @param {JSON object} buttonPost 
- * @description This class takes in a post as props and and when rendered
- *  will return the full details of the post
- *  
- */
-
 class RHS extends React.Component {
   //post info needs to render here
   constructor(props) {
     super(props);
+    this.state = {
+      click: false,
+    };
   }
   render() {
     let post = this.props.buttonPost;
@@ -212,4 +199,5 @@ class RHS extends React.Component {
     );
   }
 }
+
 setup();
