@@ -113,9 +113,11 @@ class Middle extends React.Component {
   }
 
   /**
-   * @author Matthew Toledo
-   * @param {*} topicList 
+   * @author Matthew Toledo, Santigo Luna
+   * @param {array of JSON object} topicList 
    * @returns {array of JSON obj} totalCatPost
+   * @description takes in a topic list and goes inside each listpost and retrives
+   * all the post. The post are added to an array and returned.
    */
   getAllPost(topicList) {
     //array to be returned
