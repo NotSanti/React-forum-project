@@ -187,5 +187,4 @@ class RHS extends React.Component {
     );
   }
 }
-
 setup();
