@@ -169,9 +169,6 @@ class RHS extends React.Component {
   //post info needs to render here
   constructor(props) {
     super(props);
-    this.state = {
-      click: false,
-    };
   }
   render() {
     let post = this.props.buttonPost;
