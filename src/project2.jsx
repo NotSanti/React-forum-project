@@ -109,6 +109,7 @@ class LHS extends React.Component {
  * @class Middle
  * @param {JSON object} currentCategory
  * @description renders the middle component that contains all the listposts of the current category passed in as a prop.
+ * Calls the RHS component to render it in a jsx fragment.
  *
  */
 class Middle extends React.Component {
@@ -123,7 +124,7 @@ class Middle extends React.Component {
 
   /**
    * @author Matthew Toledo, Santigo Luna
-   * @param {array of JSON object} topicList 
+   * @param {array of JSON object} topicList
    * @returns {array of JSON obj} totalCatPost
    * @description takes in a topic list and goes inside each listpost and retrives
    * all the post. The post are added to an array and returned.
@@ -133,13 +134,10 @@ class Middle extends React.Component {
     let totalCatPost = [];
 
     topicList.forEach((elem, index) => {
-      console.log("elem" + elem.listPosts);
       //concat each listpost array to the totalCatPost array
       //(creates a mega post array with the post from all the list post of the category)
       totalCatPost = totalCatPost.concat(elem.listPosts);
     });
-
-    console.log(totalCatPost);
 
     //this resets the RHS when the category is changed
     if (this.state.currentCategory !== this.props.currentCategory) {
@@ -190,18 +188,16 @@ class Middle extends React.Component {
   }
 }
 
-/
+/**
+ * @author Matthew Toledo
+ * @class RHS
+ * @param {JSON object} buttonPost
+ * @description renders the corresponding post information of the post that was clicked in the Middle component
+ * Which is passed as the buttonPost props.
+ */
 class RHS extends React.Component {
-  //post info needs to render here
-  constructor(props) {
-    super(props);
-    this.state = {
-      click: false,
-    };
-  }
   render() {
     let post = this.props.buttonPost;
-    console.log(this.props.buttonPost);
     return (
       <div className="RHS">
         <p>
