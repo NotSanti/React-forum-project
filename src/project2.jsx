@@ -45,6 +45,7 @@ function getData() {
 
 /**
  * @author  Santiago Luna
+ * @func renderLHS
  * @param {JSON object} json
  * @description this function  uses react to render the LHS passing through the json object as a props to the react component and rendering it in the global container.
  */
@@ -53,7 +54,9 @@ function renderLHS(json) {
 }
 
 /**
- *
+ * @author Santiago Luna
+ * @class LHS
+ * @description
  */
 class LHS extends React.Component {
   constructor() {
