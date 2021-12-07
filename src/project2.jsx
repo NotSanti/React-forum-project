@@ -126,10 +126,17 @@ class Middle extends React.Component {
     return totalCatPost;
   }
 
+  /**
+   * @author Matthew Toledo, Santigo Luna
+   * @param {event} e 
+   * @description event handler for the MHS click. When clicked it will take
+   * the id of the target which also corresponds to the category. It will then set the post 
+   * with that category to the sate.
+   */
   handleMiddleClick(e) {
     let buttonPost = global.totalCatPost[e.target.id];
     this.setState({
-      post: buttonPost,
+      post: buttonPost
     });
   }
 
@@ -160,6 +167,7 @@ class Middle extends React.Component {
  *
  * @class RHS
  * @author Matthew toledo
+ * @param {JSON object} buttonPost 
  * @description This class takes in a post as props and and when rendered
  *  will return the full details of the post
  *  
