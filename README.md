@@ -4,11 +4,13 @@ project 2 for webdev
 
 ## Name
 
-Matthew Toledo and Santiago Luna
+Santiago Luna and Matthew Toledo
 
 ## Description
 
-In this project, we created a pseudo-forum. We fetched data from a JSON file and created a user interface using react to render its components.
+In this project, we created a pseudo-forum.
+The program fetches data from a given JSON file and presents it to the user using React as the front end.
+The user can travel down the JSON, exploring the blog posts with each component.
 
 ## Attributions
 
