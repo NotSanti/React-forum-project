@@ -1,6 +1,6 @@
 # forum-Santi-Matthew
 
-project 2 for webdev
+Fully functional React forum project.
 
 ## Name
 
